@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { NodesNodeController } from './node.controller';
 import { NodesNodeService } from './node.service';
+import { NodesNodePrinterModule } from './printer/printer.module';
 
 @Module({
-  imports: [],
+  imports: [NodesNodePrinterModule],
   controllers: [NodesNodeController],
   providers: [NodesNodeService],
 })

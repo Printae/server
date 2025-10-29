@@ -27,6 +27,9 @@ export class NodeConnection {
 
     this._api = axios.create({
       baseURL: `${node.address}/api`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
     return this._api;
