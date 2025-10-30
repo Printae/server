@@ -26,6 +26,6 @@ export class NodesNodePrinterService {
     const homeRes = await connection.e.printer.control.movement.home();
     if (homeRes.status !== 'ok') return homeRes;
 
-    return Response.ok('Initilized');
+    return Response.ok('Initialized');
   }
 }
