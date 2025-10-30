@@ -6,10 +6,12 @@ import { e } from './e';
 
 export class NodeConnection {
   private _nodeId: string;
+  private _address?: string;
   private _api: AxiosInstance;
 
-  constructor(nodeId: string) {
+  constructor(nodeId: string, address?: string) {
     this._nodeId = nodeId;
+    this._address = address;
   }
 
   get e(): ReturnType<typeof e> {
@@ -19,14 +21,20 @@ export class NodeConnection {
   }
 
   private async _initializeApi() {
-    const node = await Repositories.node.findOne({
-      where: { id: this._nodeId },
-    });
+    let addr: string = this._address ?? '';
 
-    if (!node) return null;
+    if (!this._address) {
+      const node = await Repositories.node.findOne({
+        where: { id: this._nodeId },
+      });
+
+      if (!node) return null;
+
+      addr = node.address;
+    }
 
     this._api = axios.create({
-      baseURL: `${node.address}/api`,
+      baseURL: `${addr}/api`,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -52,5 +60,9 @@ export class NodeConnection {
 
   public static create(nodeId: string) {
     return new NodeConnection(nodeId);
+  }
+
+  public static fromAddress(addr: string) {
+    return new NodeConnection('', addr);
   }
 }

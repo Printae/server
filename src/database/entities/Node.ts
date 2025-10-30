@@ -13,4 +13,10 @@ export class NodeEntity {
     length: 255,
   })
   address: string;
+
+  @Column({
+    type: 'varchar',
+    length: 36,
+  })
+  nodeId: string;
 }
