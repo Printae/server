@@ -18,4 +18,9 @@ export class NodesService {
 
     return Response.ok(node);
   }
+
+  async listNodes() {
+    const nodes = await Repositories.node.find();
+    return Response.ok(nodes);
+  }
 }

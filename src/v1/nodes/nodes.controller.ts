@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { NodesService } from './nodes.service';
 
 @Controller('/nodes')
@@ -8,5 +8,10 @@ export class NodesController {
   @Post('')
   async createNode(@Body('address') address: string) {
     return await this.nodesService.createNode(address);
+  }
+
+  @Get('')
+  async listNodes() {
+    return await this.nodesService.listNodes();
   }
 }
