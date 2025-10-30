@@ -19,4 +19,15 @@ export class NodeEntity {
     length: 36,
   })
   nodeId: string;
+
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
+  port: string;
+
+  @Column({
+    type: 'int',
+  })
+  baudRate: number;
 }
