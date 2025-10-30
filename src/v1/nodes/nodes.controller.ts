@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { NodesService } from './nodes.service';
 
 @Controller('/nodes')
@@ -17,5 +17,10 @@ export class NodesController {
   @Get('')
   async listNodes() {
     return await this.nodesService.listNodes();
+  }
+
+  @Get('/:id')
+  async getNode(@Param('id') id: string) {
+    return await this.nodesService.getNode(id);
   }
 }

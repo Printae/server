@@ -39,4 +39,13 @@ export class NodesService {
     const nodes = await Repositories.node.find();
     return Response.ok(nodes);
   }
+
+  async getNode(id: string) {
+    if (!id) return Response.error('Node ID is required');
+
+    const node = await Repositories.node.findOne({ where: { id } });
+    if (!node) return Response.error('Node not found');
+
+    return Response.ok(node);
+  }
 }
