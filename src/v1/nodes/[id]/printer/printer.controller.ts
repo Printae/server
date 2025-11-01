@@ -6,11 +6,7 @@ export class NodesNodePrinterController {
   constructor(private readonly printerService: NodesNodePrinterService) {}
 
   @Post('initialize')
-  async initialize(
-    @Param('id') nodeId: string,
-    @Body('port') port: string,
-    @Body('baudRate') baudRate: number,
-  ) {
-    return await this.printerService.initialize(nodeId, port, baudRate);
+  async initialize(@Param('id') nodeId: string) {
+    return await this.printerService.initialize(nodeId);
   }
 }

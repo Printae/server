@@ -15,11 +15,7 @@ export class NodesIncService {
     });
     if (!node) return Response.error('Node not found');
 
-    const res = await this.printerService.initialize(
-      node.id,
-      node.port,
-      node.baudRate,
-    );
+    const res = await this.printerService.initialize(node.id);
     if (res.status !== 'ok') return res;
 
     return Response.ok("Thank god, you're alive!");
